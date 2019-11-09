@@ -1,6 +1,6 @@
 h1{
 	top:10px;
-	font: Ariel;
+	font-family: Arial,sans-serif;
 }
 
 
@@ -90,6 +90,7 @@ section{
 	position: relative;
 	left:730px;
 	top: 42px;
+	border:1px solid black; 
 }
 
 input[type="range"] {
