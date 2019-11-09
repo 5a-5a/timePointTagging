@@ -1,6 +1,6 @@
 h1{
-	position: relative
-	top:30px;
+	position: fixed
+	top:300px;
 	font-family: Arial,sans-serif;
 	text-align: center;
 }
