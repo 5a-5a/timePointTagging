@@ -25,7 +25,7 @@
 
 #btnGroup1{	
 	position: relative;
-	
+	border: 1px solid black;
 	width: 30%;
 	left: 1000px;
   	
