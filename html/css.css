@@ -82,14 +82,14 @@ section{
 
 #demo{
 	position: relative;
-	left: 1030px;
+	left:830px;
 	top: 42px;
 }
 
 input[type="range"] {
 	position: relative;
 	top: 65px;
-	left:1100px;
+	left:900px;
 	border: 2px solid black;
 }
 
