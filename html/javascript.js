@@ -122,7 +122,7 @@ function btnUnknown(){
 	let totalTime = wavesurfer.getDuration();
 	let x = (currentTime/totalTime) * tags.width;
 	
-	var t = new Tag("Unknown",currentTime, x,"red");
+	var t = new Tag("Unknown",currentTime, x,"#4EC5DB");
 
 	addTagBtn(t);
 	//alert(tagList[0].pos_x);
@@ -138,7 +138,7 @@ function btnNOI(){
 	let totalTime = wavesurfer.getDuration();
 	let x = (currentTime/totalTime) * tags.width;
 	
-	var t = new Tag("   NOI",currentTime,x,"grey");
+	var t = new Tag("   NOI",currentTime,x,"#EE6B6C");
 	addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -150,7 +150,7 @@ function btnBird(){
 	let totalTime = wavesurfer.getDuration();
 	let x = (currentTime/totalTime) * tags.width;
 	
-	var t = new Tag("    Bird",currentTime,x,"green");
+	var t = new Tag("    Bird",currentTime,x,"#F8DD62");
 	addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -163,7 +163,7 @@ function btnHuman(){
 	let totalTime = wavesurfer.getDuration();
 	let x = (currentTime/totalTime) * tags.width;
 	
-	var t = new Tag(" Human",currentTime,x,"blue");
+	var t = new Tag(" Human",currentTime,x,"#4FBE95");
 	addTagBtn(t);
 	//alert(tagList[0].pos_x);
 	//drawTags();
@@ -207,7 +207,7 @@ function addTagBtn(tag){
 		
 		//no overlapping
 		if(tempList.length == 0){
-			tag.btn.setAttribute("style","position:absolute;color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:0px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+			tag.btn.setAttribute("style","position:absolute;background-color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:0px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 			tags.appendChild(tag.btn);
 			tagList.push(tag);
 
@@ -215,7 +215,7 @@ function addTagBtn(tag){
 
 		//only one overlapped
 		if(tempList.length  == 1){
-			tag.btn.setAttribute("style","position:absolute;color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:" + tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+			tag.btn.setAttribute("style","position:absolute;background-color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:" + tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 			tags.appendChild(tag.btn);
 			tagList.push(tag);
 
@@ -228,7 +228,7 @@ function addTagBtn(tag){
 				||(tempList[1].pos_x >= tempList[0].pos_x && tempList[1].pos_x <= tempList[0].pos_x + tag_w)
 			){
 				//alert("overlapped");
-				tag.btn.setAttribute("style","position:absolute;color:" +tag.colour + ";left:" + 		tag.pos_x + "px;" + "bottom:" + 2*tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+				tag.btn.setAttribute("style","position:absolute;background-color:" +tag.colour + ";left:" + 		tag.pos_x + "px;" + "bottom:" + 2*tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 			tags.appendChild(tag.btn);
 			tagList.push(tag);
 
@@ -237,7 +237,7 @@ function addTagBtn(tag){
 			//not overlapped
 			else{
 				//alert("not overlapped");
-				tag.btn.setAttribute("style","position:absolute;color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:" + tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+				tag.btn.setAttribute("style","position:absolute;background-color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:" + tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 			tags.appendChild(tag.btn);
 			tagList.push(tag);
 			}
@@ -245,7 +245,7 @@ function addTagBtn(tag){
 		}
 
 		if(tempList.length ==3 || tempList.length == 4){
-			tag.btn.setAttribute("style","position:absolute;color:" +tag.colour + ";left:" + 		tag.pos_x + "px;" + "bottom:" + 2*tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+			tag.btn.setAttribute("style","position:absolute;background-color:" +tag.colour + ";left:" + 		tag.pos_x + "px;" + "bottom:" + 2*tag_h+ "px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 			tags.appendChild(tag.btn);
 			tagList.push(tag);
 
@@ -259,7 +259,7 @@ function addTagBtn(tag){
 	//if tagList is empty, add to the list
 	else{
 		
-		tag.btn.setAttribute("style", "position:absolute;color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:0px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
+		tag.btn.setAttribute("style", "position:absolute;background-color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:0px;" + "height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 		//tag.btn.style += "position:absolute;" 
 		//	+"color:" +tag.colour + ";left:" + tag.pos_x + "px;" + "bottom:0px";
 		tags.appendChild(tag.btn);
