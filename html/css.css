@@ -110,6 +110,10 @@ input[type="range"] {
 	left: 150px;
 	
 }
+button{
+	border: none;
+
+}
 
 #btnUnknown{
 	background-color: #4EC5DB;
