@@ -133,4 +133,8 @@ button{
 	background-color: #4FBE95;
 }
 
-
+#btnDelete{
+	position: relative;
+	left: 1000px;
+	background-color: #4CAF50;
+}
