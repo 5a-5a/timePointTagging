@@ -135,6 +135,7 @@ button{
 
 #btnDelete{
 	position: relative;
-	left: 1000px;
+	left: 1350px;
 	background-color: #4CAF50;
+	top: -350px;
 }
