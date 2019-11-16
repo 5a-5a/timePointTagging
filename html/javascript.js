@@ -73,6 +73,7 @@ wavesurfer.on('interaction',function(){
 });
 
 wavesurfer.on('finish',function(){
+	document.getElementById("btnPlay").src = "img/PLAY.png";
 	
 
 });
@@ -91,8 +92,16 @@ slider.oninput = function() {
 } 
 
 
+
+$(window).keypress(function(e) {
+  if (e.keyCode == 0 || e.keyCode == 32) {
+    btnPlay();
+  }
+});
+
 function btnReplay(){
 	wavesurfer.play(0);
+	document.getElementById("btnPlay").src = "img/pause.png";
 
 
 }
@@ -100,9 +109,11 @@ function btnReplay(){
 function btnPlay(){
 	if(wavesurfer.isPlaying() == true){
 		wavesurfer.pause();
+		document.getElementById("btnPlay").src = "img/PLAY.png";
 	}
 	else{
 		 wavesurfer.play();
+		document.getElementById("btnPlay").src = "img/pause.png";
 	}
 
 	//wavesurfer.playPause();
