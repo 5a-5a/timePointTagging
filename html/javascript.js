@@ -16,6 +16,8 @@ var t4 = new Tag("unknown",currentTime,380);
 var tagList = [];
 
 var tags = document.getElementById("tags");
+
+var currentTag = document.getElementById("btnDelete");
 //var canvas = document.getElementById("canvas");
 
 //var ctx = canvas.getContext("2d");
@@ -178,8 +180,40 @@ function Tag(name, time, pos_x, colour ){
 	this.colour = colour;
 	this.btn = document.createElement("BUTTON");
 	this.btn.innerHTML = name;
+	this.btn.setAttribute("onclick","btnTagClick(this)");
+	this.btn.addEventListener("focusout",function(){
+		//alert("focsout");
+		currentTag = document.getElementById("btnDelete");
+	});
 	//this.btn.setAttribute("style","height:"+tag_h+ "px;"+ "width:" +tag_w + "px");
 }
+
+
+function btnTagClick(element){
+	currentTag = element;
+
+}
+
+function btnDelete(){
+	
+	for(i=0;i<tagList.length;i++){
+		if(currentTag == tagList[i].btn){
+			//alert("found");
+			tagList.splice(i,1);
+			break;		
+		}
+	}
+	tags.innerHTML = "";
+	//alert("emptied");
+	var newList = [];
+	newList = tagList;
+	tagList = [];
+	for(i=0;i<newList.length;i++){
+		addTagBtn(newList[i]);
+	}
+
+}
+
 
 function addTagBtn(tag){
 	
@@ -269,6 +303,8 @@ function addTagBtn(tag){
 	
 
 }
+
+
 
 
 function drawTags(){
