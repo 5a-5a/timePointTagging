@@ -10,13 +10,14 @@ var c_blue = "#4EC5DB";
 var c_red = "#EE6B6C";
 var c_yellow = "#F8DD62";
 var c_green = "#4FBE95";
+var opacity = 0.35;
 
 var tagList = [];
 
 var tags = document.getElementById("tags");
 
 var currentBtn = document.getElementById("btnBird");
-//currentBtn.setAttribute("style","outline: 2px dashed blue");
+currentBtn.setAttribute("style","outline: 3px solid blue");
 
 var currentTag = document.getElementById("btnDelete");
 //var canvas = document.getElementById("canvas");
@@ -37,8 +38,8 @@ var wavesurfer = WaveSurfer.create({
 		showTime: true,
                 opacity: 1,
                 customShowTimeStyle: {
-                    'background-color': '#000',
-                    color: '#fff',
+                    'background-color': '#0000',
+                    color: '#ffff',
                     padding: '2px',
                     'font-size': '10px'
                 	}
@@ -55,7 +56,7 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test1.wav');
+wavesurfer.load('test2.wav');
 
 tags.width = waveform.clientWidth;
 
@@ -90,24 +91,26 @@ wavesurfer.on('region-created',function(region){
 	
 	if(currentBtn != null){
 			if(currentBtn.id == "btnUnknown"){
-				region.color = 'rgba(78,197,219,0.1)';
+				region.color = 'rgba(78,197,219,' + opacity + ')';
 			}
 		
 			if(currentBtn.id == "btnNOI"){
-				region.color = 'rgba(238,107,108,0.1)';
+				region.color = 'rgba(238,107,108,' + opacity + ')';
 			}
 
 			if(currentBtn.id == "btnBird"){
-				region.color = 'rgba(248,221,98,0.1)';
+				region.color = 'rgba(248,221,98,' + opacity + ')';
 			}
 
 			if(currentBtn.id == "btnHuman"){
-				region.color = 'rgba(79,190,149,0.1)';
+				region.color = 'rgba(79,190,149,' + opacity + ')';
 			}
 		}
 
 
 });
+
+
 
 
 
@@ -251,7 +254,7 @@ function btnUnknown(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnUnknown");
-	//currentBtn.setAttribute("style","outline: 2px dashed blue");
+	currentBtn.setAttribute("style","outline: 3px solid blue");
 	//addTagBtn(t);
 	//alert(tagList[0].pos_x);
 	//drawTags();
@@ -260,6 +263,12 @@ function btnUnknown(){
 			//alert("found");
 			tagList[i].name = "Unknown";
 			tagList[i].colour = c_blue;
+			
+			wavesurfer.regions.list[tagList[i].id].update(
+				{ color : 'rgba(78,197,219,' + opacity + ')'}
+			);
+			
+			//resetRegions();
 			break;		
 		}
 	}
@@ -278,7 +287,7 @@ function btnNOI(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnNOI");
-	//currentBtn.setAttribute("style","outline: 2px dashed blue");
+	currentBtn.setAttribute("style","outline: 3px solid blue");
 	//addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -288,6 +297,11 @@ function btnNOI(){
 			//alert("found");
 			tagList[i].name = "NOI";
 			tagList[i].colour = c_red;
+			wavesurfer.regions.list[tagList[i].id].update(
+				{ color : 'rgba(238,107,108,' + opacity + ')'}
+			);
+			
+			
 			break;		
 		}
 	}
@@ -304,7 +318,7 @@ function btnBird(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnBird");
-	//currentBtn.setAttribute("style","outline: 2px dashed blue");
+	currentBtn.setAttribute("style","outline: 3px solid blue");
 	//addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -314,6 +328,10 @@ function btnBird(){
 			//alert("found");
 			tagList[i].name = "Bird";
 			tagList[i].colour = c_yellow;
+			wavesurfer.regions.list[tagList[i].id].update(
+				{ color : 'rgba(248,221,98,' + opacity + ')'}
+			);
+			
 			break;		
 		}
 	}
@@ -331,7 +349,7 @@ function btnHuman(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnHuman");
-	//currentBtn.setAttribute("style","outline: 2px dashed blue");
+	currentBtn.setAttribute("style","outline: 3px solid blue");
 	//addTagBtn(t);
 	//alert(tagList[0].pos_x);
 	//drawTags();
@@ -340,6 +358,11 @@ function btnHuman(){
 			//alert("found");
 			tagList[i].name = "Human";
 			tagList[i].colour = c_green;
+			wavesurfer.regions.list[tagList[i].id].update(
+				{ color : 'rgba(79,190,149,' + opacity + ')'}
+			);
+			
+			
 			break;		
 		}
 	}
@@ -411,6 +434,24 @@ function drawTags(){
 	}
 
 
+
+}
+
+
+function resetRegions(){
+	var regions_copy = wavesurfer.regions.list;
+	wavesurfer.regions.clear();
+
+	for(var key of Object.keys(regions_copy)){
+		
+		wavesurfer.addRegion(regions_copy[key]);
+		alert("ahha");
+	}
+
+	//regions_copy.forEach(function(region){
+	//	wavesurfer.addRegion(region);
+	//});
+	
 
 }
 
