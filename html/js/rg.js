@@ -85,6 +85,32 @@ wavesurfer.on('finish',function(){
 
 });
 
+
+wavesurfer.on('region-created',function(region){
+	
+	if(currentBtn != null){
+			if(currentBtn.id == "btnUnknown"){
+				region.color = 'rgba(78,197,219,0.05)';
+			}
+		
+			if(currentBtn.id == "btnNOI"){
+				region.color = 'rgba(238,107,108,0.05)';
+			}
+
+			if(currentBtn.id == "btnBird"){
+				region.color = 'rgba(248,221,98,0.05)';
+			}
+
+			if(currentBtn.id == "btnHuman"){
+				region.color = 'rgba(79,190,149,0.05)';
+			}
+		}
+
+
+});
+
+
+
 wavesurfer.on('region-update-end',function(region){
 	let totalTime = wavesurfer.getDuration();
 	let x = (region.start/totalTime) * tags.width;
@@ -116,6 +142,7 @@ wavesurfer.on('region-update-end',function(region){
 		
 		if(currentBtn != null){
 			if(currentBtn.id == "btnUnknown"){
+			
 			var t = new Tag("Unknown",region.id, region.start, region.end, x, w, c_blue);
 				addTagBtn(t);
 				currentTag = t.btn;
