@@ -118,6 +118,7 @@ wavesurfer.on('region-update-end',function(region){
 			if(currentBtn.id == "btnUnknown"){
 			var t = new Tag("Unknown",region.id, region.start, region.end, x, w, c_blue);
 				addTagBtn(t);
+				currentTag = t.btn;
 			}
 		
 			if(currentBtn.id == "btnNOI"){
