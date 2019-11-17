@@ -15,7 +15,7 @@ var tagList = [];
 
 var tags = document.getElementById("tags");
 
-var currentBtn = document.getElementById("btnUnknown");
+var currentBtn = document.getElementById("btnBird");
 currentBtn.setAttribute("style","outline: 2px dashed blue");
 
 var currentTag = document.getElementById("btnDelete");
@@ -124,16 +124,19 @@ wavesurfer.on('region-update-end',function(region){
 			if(currentBtn.id == "btnNOI"){
 			var t = new Tag("NOI",region.id, region.start, region.end, x, w, c_red);
 				addTagBtn(t);
+				currentTag = t.btn;
 			}
 
 			if(currentBtn.id == "btnBird"){
 			var t = new Tag("Bird",region.id, region.start, region.end, x, w, c_yellow);
 				addTagBtn(t);
+				currentTag = t.btn;
 			}
 
 			if(currentBtn.id == "btnHuman"){
 			var t = new Tag("Human",region.id, region.start, region.end, x, w, c_green);
 				addTagBtn(t);
+				currentTag = t.btn;
 			}
 		}
 	}
