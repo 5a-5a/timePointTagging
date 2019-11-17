@@ -16,7 +16,7 @@ var tagList = [];
 var tags = document.getElementById("tags");
 
 var currentBtn = document.getElementById("btnBird");
-currentBtn.setAttribute("style","outline: 2px dashed blue");
+//currentBtn.setAttribute("style","outline: 2px dashed blue");
 
 var currentTag = document.getElementById("btnDelete");
 //var canvas = document.getElementById("canvas");
@@ -90,19 +90,19 @@ wavesurfer.on('region-created',function(region){
 	
 	if(currentBtn != null){
 			if(currentBtn.id == "btnUnknown"){
-				region.color = 'rgba(78,197,219,0.05)';
+				region.color = 'rgba(78,197,219,0.1)';
 			}
 		
 			if(currentBtn.id == "btnNOI"){
-				region.color = 'rgba(238,107,108,0.05)';
+				region.color = 'rgba(238,107,108,0.1)';
 			}
 
 			if(currentBtn.id == "btnBird"){
-				region.color = 'rgba(248,221,98,0.05)';
+				region.color = 'rgba(248,221,98,0.1)';
 			}
 
 			if(currentBtn.id == "btnHuman"){
-				region.color = 'rgba(79,190,149,0.05)';
+				region.color = 'rgba(79,190,149,0.1)';
 			}
 		}
 
@@ -251,7 +251,7 @@ function btnUnknown(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnUnknown");
-	currentBtn.setAttribute("style","outline: 2px dashed blue");
+	//currentBtn.setAttribute("style","outline: 2px dashed blue");
 	//addTagBtn(t);
 	//alert(tagList[0].pos_x);
 	//drawTags();
@@ -278,7 +278,7 @@ function btnNOI(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnNOI");
-	currentBtn.setAttribute("style","outline: 2px dashed blue");
+	//currentBtn.setAttribute("style","outline: 2px dashed blue");
 	//addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -304,7 +304,7 @@ function btnBird(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnBird");
-	currentBtn.setAttribute("style","outline: 2px dashed blue");
+	//currentBtn.setAttribute("style","outline: 2px dashed blue");
 	//addTagBtn(t);
 	//tagList.push(t);
 	//alert(tagList[0].pos_x);
@@ -331,7 +331,7 @@ function btnHuman(){
 		this.setAttribute("style","outline: none");
 	});
 	currentBtn = document.getElementById("btnHuman");
-	currentBtn.setAttribute("style","outline: 2px dashed blue");
+	//currentBtn.setAttribute("style","outline: 2px dashed blue");
 	//addTagBtn(t);
 	//alert(tagList[0].pos_x);
 	//drawTags();
