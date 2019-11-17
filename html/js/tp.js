@@ -191,6 +191,43 @@ function btnHuman(){
 
 }
 
+function btnSubmit(){
+	var result = JSON.stringify(
+
+		tagList
+
+
+		//tagList.forEach(function(entry){
+		//	alert(entry.name);
+		//	return{
+		//		timepoint: entry.time,
+		//		data: entry.name
+
+		//	};
+		//}
+		//)
+
+	);
+
+
+	download(result, 'timepoint_json.txt', 'text/plain');
+	var a = document.createElement("a");
+	a.href = "range.html";
+	a.click();
+}
+
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+
+
+
 function Tag(name, time, pos_x, colour ){
 	this.name = name;
 	this.time = time;

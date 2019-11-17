@@ -149,24 +149,40 @@ wavesurfer.on('region-update-end',function(region){
 			var t = new Tag("Unknown",region.id, region.start, region.end, x, w, c_blue);
 				addTagBtn(t);
 				currentTag = t.btn;
+
+				region.update(
+					{ data : "Unknown"}
+				);
 			}
 		
 			if(currentBtn.id == "btnNOI"){
 			var t = new Tag("NOI",region.id, region.start, region.end, x, w, c_red);
 				addTagBtn(t);
 				currentTag = t.btn;
+
+				region.update(
+					{ data : "NOI"}
+				);
 			}
 
 			if(currentBtn.id == "btnBird"){
 			var t = new Tag("Bird",region.id, region.start, region.end, x, w, c_yellow);
 				addTagBtn(t);
 				currentTag = t.btn;
+
+				region.update(
+					{ data : "Bird"}
+				);
 			}
 
 			if(currentBtn.id == "btnHuman"){
 			var t = new Tag("Human",region.id, region.start, region.end, x, w, c_green);
 				addTagBtn(t);
 				currentTag = t.btn;
+
+				region.update(
+					{ data : "Human"}
+				);
 			}
 		}
 	}
@@ -265,7 +281,9 @@ function btnUnknown(){
 			tagList[i].colour = c_blue;
 			
 			wavesurfer.regions.list[tagList[i].id].update(
-				{ color : 'rgba(78,197,219,' + opacity + ')'}
+				{ color : 'rgba(78,197,219,' + opacity + ')',
+				  data : tagList[i].name
+				}
 			);
 			
 			//resetRegions();
@@ -298,7 +316,9 @@ function btnNOI(){
 			tagList[i].name = "NOI";
 			tagList[i].colour = c_red;
 			wavesurfer.regions.list[tagList[i].id].update(
-				{ color : 'rgba(238,107,108,' + opacity + ')'}
+				{ color : 'rgba(238,107,108,' + opacity + ')',
+				  data : tagList[i].name
+				}
 			);
 			
 			
@@ -329,7 +349,9 @@ function btnBird(){
 			tagList[i].name = "Bird";
 			tagList[i].colour = c_yellow;
 			wavesurfer.regions.list[tagList[i].id].update(
-				{ color : 'rgba(248,221,98,' + opacity + ')'}
+				{ color : 'rgba(248,221,98,' + opacity + ')',
+				  data : tagList[i].name
+				}
 			);
 			
 			break;		
@@ -359,7 +381,9 @@ function btnHuman(){
 			tagList[i].name = "Human";
 			tagList[i].colour = c_green;
 			wavesurfer.regions.list[tagList[i].id].update(
-				{ color : 'rgba(79,190,149,' + opacity + ')'}
+				{ color : 'rgba(79,190,149,' + opacity + ')',
+				  data : tagList[i].name
+				}
 			);
 			
 			
@@ -372,6 +396,35 @@ function btnHuman(){
 
 	return false;
 }
+
+
+function btnSubmit(){
+	var result = JSON.stringify(
+        	Object.keys(wavesurfer.regions.list).map(function(id) {
+            		var region = wavesurfer.regions.list[id];
+            		return {
+                		start: region.start,
+                		end: region.end,
+                		//attributes: region.attributes,
+                		data: region.data
+            		};
+        	})
+	);
+
+
+	download(result, 'range_json.txt', 'text/plain');
+}
+
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+
 
 function Tag(name, id, start, end, x, w, colour ){
 
