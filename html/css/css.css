@@ -60,7 +60,14 @@ h1{
   font-size: 20px;
   margin: auto;
   cursor: pointer;
+
 }
+
+/*
+.btnTag:focus{
+	outline: 2px dashed blue;;
+}
+*/
 
 
 .btnPlay{
@@ -135,7 +142,7 @@ button{
 
 #btnDelete{
 	position: relative;
-	left: 1350px;
+	right: 0px;
 	background-color: #4CAF50;
 	top: -350px;
 }

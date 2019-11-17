@@ -3,12 +3,13 @@
     <head>
         <script src="https://unpkg.com/wavesurfer.js"></script>
 	<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.cursor.min.js"></script>
+	<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/css.css">
     </head>
     <body>
 	<br><br><br>
-	<h1> Time Point Tagging Interface</h1>
+	<h1> Range Tagging Interface</h1>
 	<div id="tags"></div>
 	<!-- <canvas id="canvas"></canvas> -->
         <div id="waveform"></div>
@@ -30,10 +31,10 @@
 	
 
 	<div id="btnGroup2">
-		<button class="btnTag" onclick="btnUnknown()" id="btnUnknown">Unknown</button>
-		<button class="btnTag" onclick="btnNOI()" id="btnNOI">Nothing of interest</button>
-		<button class="btnTag" onclick="btnBird()" id="btnBird">Bird</button>
-		<button class="btnTag" onclick="btnHuman()" id="btnHuman">Human</button>
+		<button class="btnTag" onmousedown="btnUnknown()" id="btnUnknown">Unknown</button>
+		<button class="btnTag" onmousedown="btnNOI()" id="btnNOI">Nothing of interest</button>
+		<button class="btnTag" onmousedown="btnBird()" id="btnBird">Bird</button>
+		<button class="btnTag" onmousedown="btnHuman()" id="btnHuman">Human</button>
 		<div id="test"></div>
 	</div>
 	<button onmousedown="btnDelete()" id="btnDelete">Delete tag</button>
@@ -46,6 +47,6 @@
 	
 
     </body>
-    <script src="js/tp.js"></script>
+    <script src="js/rg.js"></script>
 </html>
 

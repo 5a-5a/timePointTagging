@@ -99,6 +99,14 @@ $(window).keypress(function(e) {
   }
 });
 
+//prevent spacebar interacting with tag buttons
+document.querySelectorAll("button").forEach( function(item) {
+    item.addEventListener('focus', function() {
+        this.blur();
+    })
+})
+
+
 function btnReplay(){
 	wavesurfer.play(0);
 	document.getElementById("btnPlay").src = "img/pause.png";
