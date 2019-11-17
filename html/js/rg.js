@@ -390,7 +390,7 @@ function addTagBtn(tag){
 	//shorten text if the width isnt enough
 	if(tag.width < 60)
 	{
-		tag.btn.innerHTML = tag.btn.innerHTML.substr(0,2); 	
+		tag.btn.innerHTML = tag.name.substr(0,2); 	
 	}
 	else{
 		tag.btn.innerHTML = tag.name;
