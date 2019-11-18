@@ -160,7 +160,7 @@ function btnUnknown(){
 	if(tagDict[currentPage].Unknown == false){
 		
 
-		btnU.setAttribute("style","outline: 3px dashed blue");
+		btnU.setAttribute("style","outline: 3px solid blue");
 		tagDict[currentPage].Unknown = true;
 	}
 	else{
@@ -177,7 +177,7 @@ function btnNOI(){
 	if(tagDict[currentPage].NOI == false){
 		
 
-		btnN.setAttribute("style","outline: 3px dashed blue");
+		btnN.setAttribute("style","outline: 3px solid blue");
 		tagDict[currentPage].NOI = true;
 	}
 	else{
@@ -193,7 +193,7 @@ function btnBird(){
 	if(tagDict[currentPage].Bird == false){
 		
 
-		btnB.setAttribute("style","outline: 3px dashed blue");
+		btnB.setAttribute("style","outline: 3px solid blue");
 		tagDict[currentPage].Bird = true;
 	}
 	else{
@@ -211,7 +211,7 @@ function btnHuman(){
 	if(tagDict[currentPage].Human == false){
 		
 
-		btnH.setAttribute("style","outline: 3px dashed blue");
+		btnH.setAttribute("style","outline: 3px solid blue");
 		tagDict[currentPage].Human = true;
 	}
 	else{
