@@ -63,12 +63,9 @@ h1{
 
 }
 
-/*
 .btnTag:focus{
-	outline: 2px dashed blue;
+	/*outline: none;*/
 }
-*/
-
 
 .btnPlay{
   height: 70px;
