@@ -139,7 +139,7 @@ button{
 
 #btnDelete{
 	position: relative;
-	right: 0px;
+	right: -1300px;
 	background-color: #4CAF50;
-	top: -350px;
+	top: -400px;
 }
