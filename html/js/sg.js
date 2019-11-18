@@ -228,7 +228,7 @@ function btnNext(){
 		
 		if(tagDict[1].Unknown == false && tagDict[1].NOI == false
 			&& tagDict[1].Bird == false && tagDict[1].Human == false){
-			alert("Please select a least one tag!");
+			alert("Please select at least one tag!");
 			return;
 			
 		}
@@ -253,7 +253,7 @@ function btnNext(){
 
 		if(tagDict[2].Unknown == false && tagDict[2].NOI == false
 			&& tagDict[2].Bird == false && tagDict[2].Human == false){
-			alert("Please select a least one tag!");
+			alert("Please select at least one tag!");
 			return;
 			
 		}
@@ -292,7 +292,7 @@ function btnNext(){
 function submit(){
 	if(tagDict[3].Unknown == false && tagDict[3].NOI == false
 			&& tagDict[3].Bird == false && tagDict[3].Human == false){
-			alert("Please select a least one tag!");
+			alert("Please select at least one tag!");
 			return;
 			
 	}
