@@ -210,7 +210,7 @@ function btnSubmit(){
 	);
 
 
-	download(result, 'timepoint_json.txt', 'text/plain');
+	//download(result, 'timepoint_json.txt', 'text/plain');
 	var a = document.createElement("a");
 	a.href = "range.html";
 	a.click();
