@@ -298,7 +298,7 @@ function submit(){
 	}
 
 	var result = JSON.stringify(tagDict);
-	download(result, 'segment_json.txt', 'text/plain');
+	//download(result, 'segment_json.txt', 'text/plain');
 	alert("all done!");
 
 }
