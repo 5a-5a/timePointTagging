@@ -412,7 +412,7 @@ function btnSubmit(){
 	);
 
 
-	download(result, 'range_json.txt', 'text/plain');
+	//download(result, 'range_json.txt', 'text/plain');
 	var a = document.createElement("a");
 	a.href = "segment.html";
 	a.click();
