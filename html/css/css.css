@@ -143,13 +143,13 @@ button{
 #btnDelete{
 	position: relative;
 	right: -1300px;
-	background-color: grey;
+	background-color: #B8D8D8;
 	top: -400px;
 }
 #btnSubmit{
 	position: relative;
 	right: -1200px;
-	background-color: grey;
+	background-color: #B8D8D8;
 	top: -100px;
 }
 
