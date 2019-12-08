@@ -48,7 +48,7 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test1.wav');
+wavesurfer.load('Example.wav');
 
 tags.width = waveform.clientWidth;
 
@@ -212,8 +212,8 @@ function btnSubmit(){
 
 	//download(result, 'timepoint_json.txt', 'text/plain');
 	var a = document.createElement("a");
-	a.href = "timepoint2.html";
-	alert("Great, now let's move on to next timepoint-tagging task!");
+	a.href = "range.html";
+	alert("Great, now let's do some range tagging!");
 	a.click();
 }
 
@@ -223,6 +223,7 @@ function download(content, fileName, contentType) {
     var file = new Blob([content], {type: contentType});
     a.href = URL.createObjectURL(file);
     a.download = fileName;
+
     a.click();
 }
 

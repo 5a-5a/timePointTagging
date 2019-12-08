@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/wavesurfer.js"></script>
+	<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.cursor.min.js"></script>
+	<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/css.css">
+    </head>
+    <body>
+	<br><br><br>
+	<h1> Range Tagging Interface</h1>
+	<div id="tags"></div>
+	<!-- <canvas id="canvas"></canvas> -->
+        <div id="waveform"></div>
+	
+
+	<section>
+	<span id="currentTime">Current:</span>
+	<span id="duration">Duration:</span>
+	</section>
+
+	<input type="range" min="0" max="100" class="slider" id="myRange">
+	<span id="demo"></span>
+	<div id="btnGroup1">
+		<img src="img/replay.png" class="btnPlay" onclick="btnReplay()" id="btnReplay">
+		<img src="img/1back5.png"class="btnPlay" onclick="btnBackward()" id="btnBackward">
+		<img src="img/PLAY.png"class="btnPlay" onclick="btnPlay()" id="btnPlay">
+		<img src="img/1forward5.png"class="btnPlay" onclick="btnForward()" id="btnForward">
+	</div>
+	
+
+	<div id="btnGroup2">
+		<button class="btnTag" onmousedown="btnUnknown()" id="btnUnknown">Unknown</button>
+		<button class="btnTag" onmousedown="btnNOI()" id="btnNOI">Nothing of interest</button>
+		<button class="btnTag" onmousedown="btnBird()" id="btnBird">Bird</button>
+		<button class="btnTag" onmousedown="btnHuman()" id="btnHuman">Human</button>
+		<div id="test"></div>
+	</div>
+	<button onmousedown="btnDelete()" id="btnDelete">Delete tag</button>
+
+	<button onclick="btnSubmit()" id="btnSubmit">Submit</button>
+  	
+	<a href="index.html" id="btnReturn">Return</a>
+	
+
+	
+	
+	
+
+    </body>
+    <script src="js/rg2.js"></script>
+</html>
+

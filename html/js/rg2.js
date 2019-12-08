@@ -56,7 +56,7 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test2.wav');
+wavesurfer.load('test4.wav');
 
 tags.width = waveform.clientWidth;
 
@@ -414,8 +414,8 @@ function btnSubmit(){
 
 	//download(result, 'range_json.txt', 'text/plain');
 	var a = document.createElement("a");
-	a.href = "range2.html";
-	alert("Great job, now let's do another range tagging!");
+	a.href = "segment.html";
+	alert("Great job, now it's time for some segment tagging!");
 	a.click();
 }
 

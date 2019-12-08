@@ -74,7 +74,7 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test3-1.wav');
+wavesurfer.load('segment3.wav');
 
 tags.width = waveform.clientWidth;
 
@@ -234,7 +234,7 @@ function btnNext(){
 		}
 
 		//wavesurfer.empty();
-		wavesurfer.load('test3-2.wav');
+		wavesurfer.load('segment2.wav');
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -260,7 +260,7 @@ function btnNext(){
 
 
 		//wavesurfer.empty();
-		wavesurfer.load('test3-3.wav');
+		wavesurfer.load('segment3.wav');
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -299,11 +299,7 @@ function submit(){
 
 	var result = JSON.stringify(tagDict);
 	//download(result, 'segment_json.txt', 'text/plain');
-	var a = document.createElement("a");
-	a.href = "segment2.html";
-	alert("Great job, now let's do another set of segment tagging!");
-	a.click();
-	//alert("all done!");
+	alert("all done!");
 
 }
 
