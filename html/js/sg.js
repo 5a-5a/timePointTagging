@@ -4,8 +4,9 @@ var duration = document.getElementById("duration");
 var test = document.getElementById("test");
 
 
-
-
+var startTime;
+var endTime;
+var sgTotalTime = 0;
 
 
 var tagDict = {
@@ -140,6 +141,8 @@ function btnReplay(){
 
 }
 
+var firstTimeClick = true;
+
 function btnPlay(){
 	if(wavesurfer.isPlaying() == true){
 		wavesurfer.pause();
@@ -150,6 +153,11 @@ function btnPlay(){
 		document.getElementById("btnPlay").src = "img/pause.png";
 	}
 
+	if(firstTimeClick == true){
+		startTime = performance.now();
+		firstTimeClick = false;
+	
+	}
 	//wavesurfer.playPause();
 
 }
@@ -233,6 +241,8 @@ function btnNext(){
 			
 		}
 
+		endTime = performance.now();
+		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
 		wavesurfer.load('test3-2.wav');
 
@@ -247,6 +257,8 @@ function btnNext(){
 		document.getElementById("btnPlay").src = "img/PLAY.png";
 
 		currentPage = 2;
+		firstTimeClick = true;
+
 	}
 
 	else if(currentPage == 2){
@@ -258,7 +270,8 @@ function btnNext(){
 			
 		}
 
-
+		endTime = performance.now();
+		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
 		wavesurfer.load('test3-3.wav');
 
@@ -277,6 +290,7 @@ function btnNext(){
 		var btnSubmit = document.getElementById("btnNext");
 		btnSubmit.innerHTML = "submit";
 		btnSubmit.setAttribute("onclick","submit()");
+		firstTimeClick = true;
 
 	
 		
@@ -297,7 +311,12 @@ function submit(){
 			
 	}
 
-	var result = JSON.stringify(tagDict);
+	endTime = performance.now();
+	sgTotalTime += endTime - startTime;
+
+	var result = JSON.stringify({"sg1":tagDict,"time":sgTotalTime});
+	
+	localStorage.setItem("segment1",result);
 	//download(result, 'segment_json.txt', 'text/plain');
 	var a = document.createElement("a");
 	a.href = "segment2.html";

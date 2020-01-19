@@ -6,6 +6,9 @@ var test = document.getElementById("test");
 var tag_h = 20;
 var tag_w = 70;
 
+var startTime;
+var endTime;
+
 var c_blue = "#4EC5DB";
 var c_red = "#EE6B6C";
 var c_yellow = "#F8DD62";
@@ -233,6 +236,8 @@ function btnReplay(){
 
 }
 
+var firstTimeClick = true;
+
 function btnPlay(){
 	if(wavesurfer.isPlaying() == true){
 		wavesurfer.pause();
@@ -243,6 +248,11 @@ function btnPlay(){
 		document.getElementById("btnPlay").src = "img/pause.png";
 	}
 
+	if(firstTimeClick == true){
+		startTime = performance.now();
+		firstTimeClick = false;
+	
+	}
 	//wavesurfer.playPause();
 
 }
@@ -399,19 +409,21 @@ function btnHuman(){
 
 
 function btnSubmit(){
-	var result = JSON.stringify(
-        	Object.keys(wavesurfer.regions.list).map(function(id) {
-            		var region = wavesurfer.regions.list[id];
-            		return {
-                		start: region.start,
-                		end: region.end,
-                		//attributes: region.attributes,
-                		data: region.data
-            		};
-        	})
-	);
+	endTime = performance.now();
+	var result = JSON.stringify({"rg2": Object.keys(wavesurfer.regions.list).map(function(id) {
+		    		var region = wavesurfer.regions.list[id];
+		    		return {
+		        		start: region.start,
+		        		end: region.end,
+		        		//attributes: region.attributes,
+		        		data: region.data
+		    		};
+			}),
+		 "time":endTime - startTime
+		});
+	
 
-
+	localStorage.setItem("range2",result);
 	//download(result, 'range_json.txt', 'text/plain');
 	var a = document.createElement("a");
 	a.href = "segment.html";

@@ -4,8 +4,9 @@ var duration = document.getElementById("duration");
 var test = document.getElementById("test");
 
 
-
-
+var startTime;
+var endTime;
+var sgTotalTime = 0;
 
 
 var tagDict = {
@@ -140,6 +141,8 @@ function btnReplay(){
 
 }
 
+var firstTimeClick = true;
+
 function btnPlay(){
 	if(wavesurfer.isPlaying() == true){
 		wavesurfer.pause();
@@ -150,6 +153,11 @@ function btnPlay(){
 		document.getElementById("btnPlay").src = "img/pause.png";
 	}
 
+	if(firstTimeClick == true){
+		startTime = performance.now();
+		firstTimeClick = false;
+	
+	}
 	//wavesurfer.playPause();
 
 }
@@ -233,6 +241,8 @@ function btnNext(){
 			
 		}
 
+		endTime = performance.now();
+		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
 		wavesurfer.load('segment2.wav');
 
@@ -247,6 +257,7 @@ function btnNext(){
 		document.getElementById("btnPlay").src = "img/PLAY.png";
 
 		currentPage = 2;
+		firstTimeClick = true;
 	}
 
 	else if(currentPage == 2){
@@ -258,7 +269,8 @@ function btnNext(){
 			
 		}
 
-
+		endTime = performance.now();
+		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
 		wavesurfer.load('segment3.wav');
 
@@ -277,7 +289,7 @@ function btnNext(){
 		var btnSubmit = document.getElementById("btnNext");
 		btnSubmit.innerHTML = "submit";
 		btnSubmit.setAttribute("onclick","submit()");
-
+		firstTimeClick = true;
 	
 		
 
@@ -297,11 +309,41 @@ function submit(){
 			
 	}
 
-	var result = JSON.stringify(tagDict);
+	endTime = performance.now();
+	
+	sgTotalTime += endTime - startTime;
+	var result = JSON.stringify({"sg2":tagDict,"time":sgTotalTime});
+	//result = JSON.parse(result);
+	localStorage.setItem("segment2",result);
+	retriveAll();
 	//download(result, 'segment_json.txt', 'text/plain');
 	alert("all done!");
 
 }
+
+function retriveAll(){
+	var tp1 = localStorage.getItem("timepoint1");
+	var tp2 = localStorage.getItem("timepoint2");
+	var rg1 = localStorage.getItem("range1");
+	var rg2 = localStorage.getItem("range2");
+	var sg1 = localStorage.getItem("segment1");
+	var sg2 = localStorage.getItem("segment2");
+
+	var all = JSON.stringify(
+		{
+			"timepoint1":JSON.parse(tp1),
+			"timepoint2":JSON.parse(tp2),
+			"range1":JSON.parse(rg1),
+			"range2":JSON.parse(rg2),
+			"segment1":JSON.parse(sg1),
+			"segment2":JSON.parse(sg2)
+
+		}
+	);
+
+	download(all,'finalResult.txt','text/plain');
+}
+
 
 function download(content, fileName, contentType) {
     var a = document.createElement("a");

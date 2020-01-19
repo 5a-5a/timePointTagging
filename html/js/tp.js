@@ -7,6 +7,9 @@ var margin = 20;
 var tag_h = 20;
 var tag_w = 70;
 
+var startTime;
+var endTime;
+
 
 var t1 = new Tag("unknown",currentTime,250);
 var t2 = new Tag("unknown",currentTime,280);
@@ -114,6 +117,8 @@ function btnReplay(){
 
 }
 
+var firstTimeClick = true;
+
 function btnPlay(){
 	if(wavesurfer.isPlaying() == true){
 		wavesurfer.pause();
@@ -122,6 +127,12 @@ function btnPlay(){
 	else{
 		 wavesurfer.play();
 		document.getElementById("btnPlay").src = "img/pause.png";
+	}
+
+	if(firstTimeClick == true){
+		startTime = performance.now();
+		firstTimeClick = false;
+	
 	}
 
 	//wavesurfer.playPause();
@@ -192,9 +203,10 @@ function btnHuman(){
 }
 
 function btnSubmit(){
-	var result = JSON.stringify(
-
-		tagList
+	
+	endTime = performance.now();
+	var result =  JSON.stringify({"tp1":tagList,"time": endTime - startTime});
+	
 
 
 		//tagList.forEach(function(entry){
@@ -207,15 +219,16 @@ function btnSubmit(){
 		//}
 		//)
 
-	);
 
-
+	localStorage.setItem("timepoint1",result);
 	//download(result, 'timepoint_json.txt', 'text/plain');
 	var a = document.createElement("a");
 	a.href = "timepoint2.html";
 	alert("Great, now let's move on to next timepoint-tagging task!");
 	a.click();
 }
+
+
 
 
 function download(content, fileName, contentType) {
