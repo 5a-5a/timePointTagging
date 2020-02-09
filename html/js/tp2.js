@@ -50,7 +50,10 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('Example.wav');
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
+
+
+wavesurfer.load(wavDic["tp2"]);
 
 tags.width = waveform.clientWidth;
 
@@ -201,8 +204,9 @@ function btnHuman(){
 }
 
 function btnSubmit(){
+	var orderDic = {0:"timepoint.html",1:"range.html",2:"segment.html"};
 	endTime = performance.now();
-	var result = JSON.stringify({"tp2":tagList,"time": endTime -startTime});
+	var result = JSON.stringify({"tp2":tagList,"time": endTime -startTime,"wav":wavDic["tp2"]});
 	
 
 
@@ -220,9 +224,59 @@ function btnSubmit(){
 	localStorage.setItem("timepoint2",result);
 	//download(result, 'timepoint_json.txt', 'text/plain');
 	var a = document.createElement("a");
-	a.href = "range.html";
-	alert("Great, now let's do some range tagging!");
-	a.click();
+	var order = JSON.parse(localStorage.getItem("order"));
+	
+	var index = 9;
+	for(var i = 0; i< order.length;i++){
+		if(order[i] != 9){
+			//alert(i);
+			a.href = orderDic[order[i]];
+			index = order[i];
+			order[i] = 9;
+			//alert(order);
+			localStorage.setItem("order",JSON.stringify(order));
+			
+			break
+ 
+		}
+	}
+	//console.log(localStorage.getItem("order"));
+
+	if(index == 9){
+		retriveAll();
+		//download(result, 'segment_json.txt', 'text/plain');
+		alert("all done!");
+	}
+	else{
+		console.log("index: "+index);
+		var something = orderDic[index];
+		alert("Great, now let's do some " + something.substring(0,something.length-5) +" tagging!");
+		a.click();
+	}
+}
+
+
+function retriveAll(){
+	var tp1 = localStorage.getItem("timepoint1");
+	var tp2 = localStorage.getItem("timepoint2");
+	var rg1 = localStorage.getItem("range1");
+	var rg2 = localStorage.getItem("range2");
+	var sg1 = localStorage.getItem("segment1");
+	var sg2 = localStorage.getItem("segment2");
+
+	var all = JSON.stringify(
+		{
+			"timepoint1":JSON.parse(tp1),
+			"timepoint2":JSON.parse(tp2),
+			"range1":JSON.parse(rg1),
+			"range2":JSON.parse(rg2),
+			"segment1":JSON.parse(sg1),
+			"segment2":JSON.parse(sg2)
+
+		}
+	);
+
+	download(all,'finalResult.txt','text/plain');
 }
 
 
@@ -231,7 +285,6 @@ function download(content, fileName, contentType) {
     var file = new Blob([content], {type: contentType});
     a.href = URL.createObjectURL(file);
     a.download = fileName;
-
     a.click();
 }
 

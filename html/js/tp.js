@@ -49,9 +49,10 @@ var wavesurfer = WaveSurfer.create({
   	]	
 });
 
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
 
 
-wavesurfer.load('test1.wav');
+wavesurfer.load(wavDic["tp1"]);
 
 tags.width = waveform.clientWidth;
 
@@ -203,9 +204,10 @@ function btnHuman(){
 }
 
 function btnSubmit(){
-	
+	var w = wavDic["tp1"];
 	endTime = performance.now();
-	var result =  JSON.stringify({"tp1":tagList,"time": endTime - startTime});
+	var result =  JSON.stringify({"tp1":tagList,"time": endTime - startTime, "wav" : w});
+	console.log(result["wav"]);
 	
 
 

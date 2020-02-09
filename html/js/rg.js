@@ -59,7 +59,10 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test2.wav');
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
+
+
+wavesurfer.load(wavDic["rg1"]);
 
 tags.width = waveform.clientWidth;
 
@@ -410,6 +413,7 @@ function btnHuman(){
 
 
 function btnSubmit(){
+	var wRg = wavDic["rg1"];
 	endTime = performance.now();
 	var result = JSON.stringify({"rg1": Object.keys(wavesurfer.regions.list).map(function(id) {
 		    		var region = wavesurfer.regions.list[id];
@@ -420,7 +424,8 @@ function btnSubmit(){
 		        		data: region.data
 		    		};
 			}),
-		 "time": endTime -startTime
+		 "time": endTime -startTime,
+		 "wav": wRg
 		});
 	
 

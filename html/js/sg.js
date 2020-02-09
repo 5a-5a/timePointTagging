@@ -74,8 +74,10 @@ var wavesurfer = WaveSurfer.create({
 });
 
 
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
 
-wavesurfer.load('test3-1.wav');
+
+wavesurfer.load(wavDic["sg1_1"]);
 
 tags.width = waveform.clientWidth;
 
@@ -244,7 +246,7 @@ function btnNext(){
 		endTime = performance.now();
 		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
-		wavesurfer.load('test3-2.wav');
+		wavesurfer.load(wavDic["sg1_2"]);
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -273,7 +275,7 @@ function btnNext(){
 		endTime = performance.now();
 		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
-		wavesurfer.load('test3-3.wav');
+		wavesurfer.load(wavDic["sg1_3"]);
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -314,7 +316,14 @@ function submit(){
 	endTime = performance.now();
 	sgTotalTime += endTime - startTime;
 
-	var result = JSON.stringify({"sg1":tagDict,"time":sgTotalTime});
+	var s1 = wavDic["sg1_1"];
+	var s2 = wavDic["sg1_2"];
+	var s3 = wavDic["sg1_3"];
+	var result = JSON.stringify({"sg1":tagDict,"time":sgTotalTime,
+					"sg1_1" : s1,
+					"sg1_2" : s2,
+					"sg1_3" : s3
+					});
 	
 	localStorage.setItem("segment1",result);
 	//download(result, 'segment_json.txt', 'text/plain');

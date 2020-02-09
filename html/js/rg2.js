@@ -59,7 +59,10 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('test4.wav');
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
+
+
+wavesurfer.load(wavDic["rg2"]);
 
 tags.width = waveform.clientWidth;
 
@@ -409,7 +412,9 @@ function btnHuman(){
 
 
 function btnSubmit(){
+	var orderDic = {0:"timepoint.html",1:"range.html",2:"segment.html"};
 	endTime = performance.now();
+	var wRg = wavDic["rg2"];
 	var result = JSON.stringify({"rg2": Object.keys(wavesurfer.regions.list).map(function(id) {
 		    		var region = wavesurfer.regions.list[id];
 		    		return {
@@ -419,16 +424,68 @@ function btnSubmit(){
 		        		data: region.data
 		    		};
 			}),
-		 "time":endTime - startTime
+		 "time":endTime - startTime,
+		 "wav" : wRg
 		});
 	
 
 	localStorage.setItem("range2",result);
 	//download(result, 'range_json.txt', 'text/plain');
 	var a = document.createElement("a");
-	a.href = "segment.html";
-	alert("Great job, now it's time for some segment tagging!");
-	a.click();
+	var order = JSON.parse(localStorage.getItem("order"));
+	console.log("pre:" + order);
+
+	var index = 9;
+	for(var i = 0; i< order.length;i++){
+		if(order[i] != 9){
+			//alert(i);
+			a.href = orderDic[order[i]];
+			index = order[i];
+			order[i] = 9;
+			//alert(order);
+			localStorage.setItem("order",JSON.stringify(order));
+			
+			break
+ 
+		}
+	}
+	console.log(JSON.parse(localStorage.getItem("order")));
+	if(index == 9){
+		retriveAll();
+		//download(result, 'segment_json.txt', 'text/plain');
+		alert("all done!");
+	}
+	else{
+		console.log("index: "+index);
+		var something = orderDic[index];
+		alert("Great, now let's do some " + something.substring(0,something.length-5) +" tagging!");
+		a.click();
+	}
+}
+
+
+
+function retriveAll(){
+	var tp1 = localStorage.getItem("timepoint1");
+	var tp2 = localStorage.getItem("timepoint2");
+	var rg1 = localStorage.getItem("range1");
+	var rg2 = localStorage.getItem("range2");
+	var sg1 = localStorage.getItem("segment1");
+	var sg2 = localStorage.getItem("segment2");
+
+	var all = JSON.stringify(
+		{
+			"timepoint1":JSON.parse(tp1),
+			"timepoint2":JSON.parse(tp2),
+			"range1":JSON.parse(rg1),
+			"range2":JSON.parse(rg2),
+			"segment1":JSON.parse(sg1),
+			"segment2":JSON.parse(sg2)
+
+		}
+	);
+
+	download(all,'finalResult.txt','text/plain');
 }
 
 
@@ -439,7 +496,6 @@ function download(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
-
 
 
 function Tag(name, id, start, end, x, w, colour ){

@@ -1,53 +1,98 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://unpkg.com/wavesurfer.js"></script>
-	<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.cursor.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="css/css.css">
-    </head>
-    <body>
-	<br><br><br>
-	<h1> Time Point Tagging Interface</h1>
-	<div id="tags"></div>
-	<!-- <canvas id="canvas"></canvas> -->
-        <div id="waveform"></div>
-	
+<html> 
+  <head> 
+    
+  </head> 
 
-	<section>
-	<span id="currentTime">Current:</span>
-	<span id="duration">Duration:</span>
-	</section>
+  <body> 
+   
+    <button onclick="btnSubmit()" id="btnStart" style="height:800px;width:1600px">START</button>
+  </body> 
+<script> 
+	var numArray = [0,1,2];
+	//var num = "012";
+	function btnSubmit(){
 
-	<input type="range" min="0" max="100" class="slider" id="myRange">
-	<span id="demo"></span>
-	<div id="btnGroup1">
-		<img src="img/replay.png" class="btnPlay" onclick="btnReplay()" id="btnReplay">
-		<img src="img/1back5.png"class="btnPlay" onclick="btnBackward()" id="btnBackward">
-		<img src="img/PLAY.png"class="btnPlay" onclick="btnPlay()" id="btnPlay">
-		<img src="img/1forward5.png"class="btnPlay" onclick="btnForward()" id="btnForward">
-	</div>
-	
+			
+		var newArray = shuffle(numArray);
+		console.log(newArray.length);
+		//alert(newArray.length);
+		//alert(newArray);
+		
+		var a = document.createElement("a");
 
-	<div id="btnGroup2">
-		<button class="btnTag" onclick="btnUnknown()" id="btnUnknown">Unknown</button>
-		<button class="btnTag" onclick="btnNOI()" id="btnNOI">Nothing of interest</button>
-		<button class="btnTag" onclick="btnBird()" id="btnBird">Bird</button>
-		<button class="btnTag" onclick="btnHuman()" id="btnHuman">Human</button>
-		<div id="test"></div>
-	</div>
-	<button onmousedown="btnDelete()" id="btnDelete">Delete tag</button>
+		if(newArray[0] == 0){
+			
+			a.href = "timepoint.html";
+		}
+		else if(newArray[0] == 1){
+			
+			a.href = "range.html";
+		}
+		else if(newArray[0] ==2 ){
+			
+			a.href = "segment.html";
+		}
+		newArray[0] = 9
+		
+		localStorage.setItem("order",JSON.stringify(newArray));
+		//alert(localStorage.getItem("order"));
 
-	<button onclick="btnSubmit()" id="btnSubmit">Submit</button>
-  	
-	
-	
+		var wavDic = {
+			"tp1" : null,
+			"tp2" : null,
+			"rg1": null,
+			"rg2": null,
+			"sg1_1": null,
+			"sg1_2": null,
+			"sg1_3": null,
+			"sg2_1": null,
+			"sg2_2": null,
+			"sg2_3": null,
 
-	
-	
-	
+		};
+		var a1 = ["30s_1.wav","30s_2.wav","30s_3.wav","30s_4.wav"];
+		var a2 = ["10s_1.wav","10s_2.wav","10s_3.wav","10s_4.wav","10s_5.wav","10s_6.wav"];
+		var s1 = shuffle(a1);
+		var s2 = shuffle(a2);
+		
+		wavDic["tp1"] = s1[0];
+		wavDic["tp2"] = s1[1];
+		wavDic["rg1"] = s1[2];
+		wavDic["rg2"] = s1[3];
+		
+		wavDic["sg1_1"]=s2[0];
+		wavDic["sg1_2"]=s2[1];
+		wavDic["sg1_3"]=s2[2];
+		wavDic["sg2_1"]=s2[3];
+		wavDic["sg2_2"]=s2[4];
+		wavDic["sg2_3"]=s2[5];
 
-    </body>
-    <script src="js/tp.js"></script>
+		console.log(wavDic);
+		localStorage.setItem("wavDic",JSON.stringify(wavDic));
+
+		
+		alert("");
+		a.click();
+	}
+
+	function shuffle(array) {
+  		var currentIndex = array.length, temporaryValue, randomIndex;
+
+  		// While there remain elements to shuffle...
+  		while (0 !== currentIndex) {
+
+    			// Pick a remaining element...
+    			randomIndex = Math.floor(Math.random() * currentIndex);
+    			currentIndex -= 1;
+
+    			// And swap it with the current element.
+    			temporaryValue = array[currentIndex];
+    			array[currentIndex] = array[randomIndex];
+    			array[randomIndex] = temporaryValue;
+  		}
+
+  		return array;
+	}
+
+</script> 
 </html>
-

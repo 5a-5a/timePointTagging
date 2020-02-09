@@ -75,7 +75,10 @@ var wavesurfer = WaveSurfer.create({
 
 
 
-wavesurfer.load('segment3.wav');
+wavDic = JSON.parse(localStorage.getItem("wavDic"));
+
+
+wavesurfer.load(wavDic["sg2_1"]);
 
 tags.width = waveform.clientWidth;
 
@@ -244,7 +247,7 @@ function btnNext(){
 		endTime = performance.now();
 		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
-		wavesurfer.load('segment2.wav');
+		wavesurfer.load(wavDic["sg2_2"]);
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -272,7 +275,7 @@ function btnNext(){
 		endTime = performance.now();
 		sgTotalTime += endTime - startTime;
 		//wavesurfer.empty();
-		wavesurfer.load('segment3.wav');
+		wavesurfer.load(wavDic["sg2_3"]);
 
 		currentTime.innerHTML = "CURRENT: " + wavesurfer.getCurrentTime().toFixed(1) + " s";
 		duration.innerHTML = "DURATION: " + wavesurfer.getDuration().toFixed(1) + " s";
@@ -312,12 +315,44 @@ function submit(){
 	endTime = performance.now();
 	
 	sgTotalTime += endTime - startTime;
-	var result = JSON.stringify({"sg2":tagDict,"time":sgTotalTime});
+	var result = JSON.stringify({"sg2":tagDict,"time":sgTotalTime,
+					"sg2_1":wavDic["sg2_1"],
+					"sg2_2":wavDic["sg2_2"],
+					"sg2_3":wavDic["sg2_3"],			
+					});
 	//result = JSON.parse(result);
 	localStorage.setItem("segment2",result);
-	retriveAll();
-	//download(result, 'segment_json.txt', 'text/plain');
-	alert("all done!");
+
+	var orderDic = {0:"timepoint.html",1:"range.html",2:"segment.html"};
+	var a = document.createElement("a");
+	var order = JSON.parse(localStorage.getItem("order"));
+	var index = 9;
+	for(var i = 0; i< order.length;i++){
+		if(order[i] != 9){
+			//alert(i);
+			a.href = orderDic[order[i]];
+			index = order[i];
+			order[i] = 9;
+			//alert(order);
+			localStorage.setItem("order",JSON.stringify(order));
+			
+			break
+ 
+		}
+	}
+	if(index == 9){
+		retriveAll();
+		//download(result, 'segment_json.txt', 'text/plain');
+		alert("all done!");
+	}
+	else{
+		console.log("index: "+index);
+		var something = orderDic[index];
+		alert("Great, now let's do some " + something.substring(0,something.length-5) +" tagging!");
+		a.click();
+	}
+
+	
 
 }
 
