@@ -1,3 +1,19 @@
+
+#btnStart {
+	height:80px;
+	width:160px;
+	background-color: #d57f7f;
+	border-radius:5px;
+	font-size: 20px;
+	font-weight:bold;
+	font-family: Arial,Helvetica,sans-serif;
+	margin: 0 auto;
+}
+
+#btnStart: hover {
+	background-color: #b6b3b3;
+}
+
 h1{
 	position: fixed
 	top:300px;
