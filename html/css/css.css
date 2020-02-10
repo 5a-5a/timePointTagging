@@ -2,12 +2,11 @@
 	margin: 10%;
 }
 
-
 #btnStart {
-	height:50px;
+	height:40px;
 	width:200px;
 	background-color: #d57f7f;
-	border-radius:25px;
+	border-radius:40px;
 	font-size: 20px;
 	font-weight:bold;
 	color: #ffffff;
@@ -15,12 +14,36 @@
 	margin: 10% 45%;
 	display: inline-block;
 	text-align: center;
-	padding:25px 0 0px 0;
+	padding:20px 0 0px 0;
 }
 
-p: hover {
-	background-color: #b6b3b3;
+
+#btnStart span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
+
+#btnStart span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+  
+}
+
+#btnStart:hover span {
+  padding-right: 25px;
+}
+
+#btnStart:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 
 h1{
 	position: fixed
