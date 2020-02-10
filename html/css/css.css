@@ -23,6 +23,9 @@
   display: inline-block;
   position: relative;
   transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
 }
 
 #btnStart span:after {
@@ -32,6 +35,9 @@
   top: 0;
   right: -20px;
   transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
   
 }
 
