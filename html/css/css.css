@@ -100,7 +100,9 @@ h1{
 	top: 50px;
 
 }
-
+#btnGroup2: hover{
+	background-color: #c6d9ec;
+}
 
 .btnTag {
   background-color: #4CAF50; /* Green */
