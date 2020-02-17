@@ -100,9 +100,6 @@ h1{
 	top: 50px;
 
 }
-.btnTag: hover{
-	background-color: #c6d9ec;
-}
 
 .btnTag {
   background-color: #4CAF50; /* Green */
@@ -115,7 +112,14 @@ h1{
   font-size: 20px;
   margin: auto;
   cursor: pointer;
+  transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
 
+.btnTag: hover{
+	background-color: #c6d9ec;
 }
 
 /*
